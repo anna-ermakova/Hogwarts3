@@ -8,3 +8,6 @@ class Hogwarts3ApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+}

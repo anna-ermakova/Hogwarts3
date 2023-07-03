@@ -10,6 +10,6 @@ public class FacultyNotFoundException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "студент с id= " + id + " не найден!";
+        return "факультет с id= " + id + " не найден!";
     }
 }

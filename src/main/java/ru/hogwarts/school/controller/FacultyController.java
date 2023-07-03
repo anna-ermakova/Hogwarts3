@@ -88,8 +88,9 @@ public class FacultyController {
     public FacultyDtoOut delete(@PathVariable("id") Long id) {
         return facultyService.delete(id);
     }
-    @GetMapping("/color/{color}")
-    @Operation(summary = "Получение факультетов по цвету.")
+
+    @GetMapping("/filter")
+    @Operation(summary = "Фильтр факультетов по цвету или имени.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -102,12 +103,6 @@ public class FacultyController {
                     }
             )
     })
-    public List<FacultyDtoOut> getAllFacultiesByColor(@PathVariable String color) {
-        return facultyService.getAllFacultyByColor(color);
-    }
-
-    @GetMapping("/filter/{colorOrName}")
-    @Operation(summary = "Фильтр факультетов по цвету или имени.")
     public List<FacultyDtoOut> findByColorOrName(@RequestParam String colorOrName) {
         return facultyService.findByColorOrName(colorOrName);
     }

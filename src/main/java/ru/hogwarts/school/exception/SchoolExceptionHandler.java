@@ -20,7 +20,8 @@ public class SchoolExceptionHandler {
     }
 
     @ExceptionHandler(AvatarProcessingException.class)
-    public ResponseEntity<?> handleInternalServerError() {
-        return ResponseEntity.internalServerError().build();
+    public ResponseEntity<?> handleInternalServerError(RuntimeException e) {
+        e.printStackTrace();
+       return ResponseEntity.internalServerError().build();
     }
 }

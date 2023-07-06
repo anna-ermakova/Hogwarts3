@@ -1,5 +1,5 @@
 package ru.hogwarts.school.service;
-import jakarta.annotation.Nullable;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.hogwarts.school.dto.FacultyDtoIn;
@@ -55,7 +55,7 @@ public class FacultyService {
         facultiesRepository.delete(faculty);
         return facultyMapper.toDto(faculty);
     }
-    public List<FacultyDtoOut> getAllFacultyByColor(@Nullable String color) {
+    public List<FacultyDtoOut> getAllFacultyByColor(String color) {
         return Optional.ofNullable(color)
                 .map(facultiesRepository::findAllByColor)
                 .orElseGet(facultiesRepository::findAll)

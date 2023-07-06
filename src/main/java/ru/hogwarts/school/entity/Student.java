@@ -1,5 +1,5 @@
 package ru.hogwarts.school.entity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.Objects;

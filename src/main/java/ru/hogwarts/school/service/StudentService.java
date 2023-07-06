@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -105,5 +106,10 @@ public class StudentService {
         StudentDtoOut studentDtoOut = studentMapper.toDto(student);
         studentDtoOut.setAvatarUrl("http://localhost:8080/avatars/" + avatar.getId() + "/from-db");
         return studentDtoOut;
+    }
+
+    public Student getById(long id) {
+      return   studentRepository.findById(id)
+                .orElseThrow(()->new StudentNotFoundException(id));
     }
 }

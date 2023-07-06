@@ -92,7 +92,7 @@ public class StudentController {
         return studentService.getStudentByAge(age);
     }
 
-    @GetMapping("/age/{filter}")
+    @GetMapping("/age")
     @Operation(summary = "Фильтр студентов по возрасту от-до.")
     public List<StudentDtoOut> findByAgeBetween(@RequestParam int ageFrom, @RequestParam int ageTo) {
         return studentService.findByAgeBetween(ageFrom, ageTo);

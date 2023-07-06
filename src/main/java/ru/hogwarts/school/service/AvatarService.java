@@ -30,6 +30,7 @@ public class AvatarService {
                          @Value("${path.to.avatar.dir}") String pathToAvatarDir) {
         this.avatarRepository = avatarRepository;
         this.pathToAvatarDir = Path.of(pathToAvatarDir);
+
     }
 
     public Avatar create(Student student, MultipartFile multipartFile) {
@@ -39,8 +40,8 @@ public class AvatarService {
             byte[] data = multipartFile.getBytes();
             String fileName = UUID.randomUUID() + "." + extension;
             Path pathToAvatar = pathToAvatarDir.resolve(fileName);
-            writeToFile(pathToAvatar, data);
-            //Files.write(pathToAvatar, data);
+            //writeToFile(pathToAvatar, data);
+            Files.write(pathToAvatar, data);
 
             Avatar avatar = avatarRepository.findByStudent_Id(student.getId())
                     .orElse(new Avatar());
@@ -87,4 +88,29 @@ public class AvatarService {
             throw new AvatarProcessingException();
         }
     }
+
+//    public void uploadAvatar(long id, MultipartFile avatar) {
+//        Student student = studentService.getStudent(studentId);
+//
+//        Path filePath = Path.of(avatarsDir, studentId + "." + getExtension(file.getOriginalFilename()));
+//        Files.createDirectories(filePath.getParent());
+//        Files.deleteIfExists(filePath);
+//
+//        try (InputStream is = file.getInputStream();
+//             OutputStream os = Files.newOutputStream(filePath, CREATE_NEW);
+//             BufferedInputStream bis = new BufferedInputStream(is, 1024);
+//             BufferedOutputStream bos = new BufferedOutputStream(os, 1024)
+//        ) {
+//            bis.transferTo(bos);
+//        }
+//
+//        Avatar avatar = findAvatar(studentId);
+//        avatar.setStudent(student);
+//        avatar.setFilePath(filePath.toString());
+//        avatar.setFileSize(file.getSize());
+//        avatar.setMediaType(file.getContentType());
+//        avatar.setData(generateSmallAvatar(filePath));
+//
+//        avatarRepository.save(avatar);
+//    }
 }
